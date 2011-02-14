@@ -1,4 +1,3 @@
-
 copy authors from '/home/bringout/FIT/FIT_UBP/authors.csv' with 
   DELIMITER AS ',' 
   CSV HEADER 

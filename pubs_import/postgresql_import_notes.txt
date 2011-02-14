@@ -56,3 +56,8 @@ sed titles.csv -e 's/\"\([0-9]\+\).\([0-9]\+\),\([0-9]\+\)\"/\"\1\2.\3\"/g'  -e 
 
 ALTER TABLE publishers_info ADD COLUMN logo character varying(65536);
 
+
+--------------
+
+
+

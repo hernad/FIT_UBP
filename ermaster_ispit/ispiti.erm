@@ -108,7 +108,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2011-02-14 19:25:39</creation_date>
-			<updated_date>2011-02-14 20:48:53</updated_date>
+			<updated_date>2011-02-15 11:45:45</updated_date>
 			<model_property>
 				<name>Project Name</name>
 				<value></value>
@@ -668,21 +668,21 @@
 		</table>
 		<table>
 			<id>4</id>
-			<height>128</height>
+			<height>107</height>
 			<width>219</width>
 				<font_name>Ubuntu</font_name>
 				<font_size>9</font_size>
-			<x>414</x>
-			<y>83</y>
+			<x>98</x>
+			<y>154</y>
 			<color>
-				<r>128</r>
-				<g>128</g>
-				<b>192</b>
+				<r>255</r>
+				<g>0</g>
+				<b>0</b>
 			</color>
 			<connections>
 				<relation>
 					<id>2</id>
-					<source>3</source>
+					<source>1</source>
 					<target>4</target>
 					<child_cardinality>1..n</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
@@ -699,7 +699,7 @@
 				</relation>
 				<relation>
 					<id>3</id>
-					<source>5</source>
+					<source>0</source>
 					<target>4</target>
 					<child_cardinality>1..n</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
@@ -715,17 +715,15 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>ispit</physical_name>
-			<logical_name>ispit</logical_name>
+			<physical_name>n_predaje_p</physical_name>
+			<logical_name>n_predaje_p</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<columns>
 				<normal_column>
 					<id>9</id>
-					<referenced_column>7</referenced_column>
-					<referenced_column>14</referenced_column>
-					<relation>2</relation>
+					<referenced_column>0</referenced_column>
 					<relation>3</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -753,35 +751,7 @@
 				</normal_column>
 				<normal_column>
 					<id>10</id>
-					<referenced_column>13</referenced_column>
-					<relation>3</relation>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>integer</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>true</primary_key>
-					<unique_key>false</unique_key>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<cycle>false</cycle>
-						<description></description>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<id>11</id>
-					<referenced_column>6</referenced_column>
+					<referenced_column>2</referenced_column>
 					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -808,13 +778,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>8</word_id>
-					<id>12</id>
+					<word_id>0</word_id>
+					<id>11</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>date</type>
+					<type>integer</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -846,23 +816,23 @@
 		</table>
 		<table>
 			<id>5</id>
-			<height>107</height>
+			<height>128</height>
 			<width>219</width>
 				<font_name>Ubuntu</font_name>
 				<font_size>9</font_size>
-			<x>98</x>
-			<y>154</y>
+			<x>414</x>
+			<y>83</y>
 			<color>
-				<r>255</r>
-				<g>0</g>
-				<b>0</b>
+				<r>128</r>
+				<g>128</g>
+				<b>192</b>
 			</color>
 			<connections>
 				<relation>
 					<id>4</id>
-					<source>0</source>
+					<source>3</source>
 					<target>5</target>
-					<child_cardinality>1..n</child_cardinality>
+					<child_cardinality>0..n</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
 					<reference_for_pk>true</reference_for_pk>
 					<name></name>
@@ -877,9 +847,9 @@
 				</relation>
 				<relation>
 					<id>5</id>
-					<source>1</source>
+					<source>4</source>
 					<target>5</target>
-					<child_cardinality>1..n</child_cardinality>
+					<child_cardinality>0..1</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
 					<reference_for_pk>true</reference_for_pk>
 					<name></name>
@@ -893,43 +863,17 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>n_predaje_p</physical_name>
-			<logical_name>n_predaje_p</logical_name>
+			<physical_name>ispit</physical_name>
+			<logical_name>ispit</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<columns>
 				<normal_column>
-					<id>13</id>
-					<referenced_column>0</referenced_column>
+					<id>12</id>
+					<referenced_column>7</referenced_column>
+					<referenced_column>10</referenced_column>
 					<relation>4</relation>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>integer</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>true</primary_key>
-					<unique_key>false</unique_key>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<cycle>false</cycle>
-						<description></description>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<id>14</id>
-					<referenced_column>2</referenced_column>
 					<relation>5</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -956,13 +900,69 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>0</word_id>
-					<id>15</id>
+					<id>13</id>
+					<referenced_column>9</referenced_column>
+					<relation>5</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>integer</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+					<unique_key>false</unique_key>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<cycle>false</cycle>
+						<description></description>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<id>14</id>
+					<referenced_column>6</referenced_column>
+					<relation>4</relation>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>integer</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<cycle>false</cycle>
+						<description></description>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>8</word_id>
+					<id>15</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>date</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>

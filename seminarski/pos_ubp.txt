@@ -1,0 +1,51 @@
+# erviz.sh -i pos_ubp.txt -o pos_ubp.dot
+# erwiz/work/scripts/dot2pdf.sh pos_ubp.dot
+
+
+{title: "UBP seminarski, POS E-R model, IE notacija (Look Across/Look Across), v 0.6.1"; title-size: 20}
+
+[racuni] {color: blue}
+*id
+tip
+broj {mark: "(1); (1,2)=[UNIQUE]"}
+datum {mark: "(2)"}
+ukupno_s_pdv
+#rn_originalni_id* {mark: "<racun>"} 
+operater_id* {mark: "<operateri>"}
+
+[rn_stavke] {color: blue}
+*id 
+racun_id* {mark: "<racun>"}
+kolicina
+cijena
+
+
+[artikli] {color: red}
+*id
+kod {mark: "[UNIQUE]"}
+barkod {mark: "[UNIQUE]"}
+jmj 
+cijena {mark: "[1]; (1,2)=[UNIQUE]"}
+naziv {mark: "[2]"}
+
+[parametri] {color: green}
+*id
+svrha {mark: "[UNIQUE]"}
+opis
+
+[operateri] {color: red}
+*id
+naziv
+
+(rn_fiskalni) {color: orange}
+*racun_id* {mark: "<racun>"}
+*datum
+*vrijeme
+br_fiskalnog_isjecka
+ukupno_s_pdv
+
+[racuni] 1--+ [rn_stavke] <se_sastoji_od->
+[racuni] ?--1 [racuni] <ima_za_original->
+[rn_stavke] 1--* [artikli] <sadrzi_artikal->
+[operateri] 1--* [racuni] <izdaje-> { N1: 1; N2: N}
+[racuni] 1--* (rn_fiskalni) <fiskaliziraj-> { N1: 1; N2: N}

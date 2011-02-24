@@ -1,0 +1,62 @@
+copy authors from '/home/bringout/FIT/FIT_UBP/authors.csv' with 
+  DELIMITER AS ',' 
+  CSV HEADER 
+
+copy publishers_info from '/home/bringout/FIT/FIT_UBP/pub_info.csv' with 
+  DELIMITER AS ',' 
+  CSV HEADER 
+
+copy publishers from '/home/bringout/FIT/FIT_UBP/publishers.csv' with 
+  DELIMITER AS ',' 
+  CSV HEADER 
+
+copy titles from '/home/bringout/FIT/FIT_UBP/titles_2.csv' with 
+  DELIMITER AS ',' 
+  CSV HEADER 
+
+copy jobs from '/home/bringout/FIT/FIT_UBP/jobs.csv' with 
+  DELIMITER AS ',' 
+  CSV HEADER 
+
+copy stores from '/home/bringout/FIT/FIT_UBP/stores.csv' with 
+  DELIMITER AS ',' 
+  CSV HEADER 
+
+copy sales from '/home/bringout/FIT/FIT_UBP/sales.csv' with 
+  DELIMITER AS ',' 
+  CSV HEADER
+
+copy title_author from '/home/bringout/FIT/FIT_UBP/titleauthor.csv' with 
+  DELIMITER AS ',' 
+  CSV HEADER
+
+
+copy roysched from '/home/bringout/FIT/FIT_UBP/roysched.csv' with 
+  DELIMITER AS ',' 
+  CSV HEADER
+
+
+copy discounts from '/home/bringout/FIT/FIT_UBP/discounts_2.csv' with 
+  DELIMITER AS ',' 
+  CSV HEADER
+
+copy employee from '/home/bringout/FIT/FIT_UBP/employee.csv' with 
+  DELIMITER AS ',' 
+  CSV HEADER
+
+----
+
+
+sed titles.csv -e 's/\"\([0-9]\+\).\([0-9]\+\),\([0-9]\+\)\"/\"\1\2.\3\"/g'  -e 's/\"\([0-9]\+\),\([0-9]\+\)\"/\"\1.\2\"/g' > titles_2.csv
+
+----
+
+-- ALTER TABLE publishers_info DROP COLUMN logo;
+
+ALTER TABLE publishers_info ADD COLUMN logo character varying(65536);
+
+
+--------------
+
+
+

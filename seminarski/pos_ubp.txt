@@ -2,7 +2,7 @@
 # erwiz/work/scripts/dot2pdf.sh pos_ubp.dot
 
 
-{title: "UBP seminarski, POS E-R model, IE notacija (Look Across/Look Across), v 0.6.1"; title-size: 20}
+{title: "UBP seminarski, POS E-R model, IE notacija (Look Across/Look Across), v 0.6.5"; title-size: 20}
 
 [racuni] {color: blue}
 *id
@@ -15,7 +15,8 @@ operater_id* {mark: "<operateri>"}
 
 [rn_stavke] {color: blue}
 *id 
-racun_id* {mark: "<racun>"}
+racun_id* {mark: "<racuni>"}
+artikal_id* {mark: "<artikli>"}
 kolicina
 cijena
 

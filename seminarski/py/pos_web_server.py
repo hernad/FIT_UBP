@@ -13,7 +13,7 @@ from wsgiref.simple_server import make_server
 from urllib import unquote_plus
 
 PORT=3000
-VER="0.7.0"
+VER="0.7.1"
 AUTHOR="hernad@bring.out.ba"
 
 class PosWeb:
@@ -63,7 +63,7 @@ class PosWeb:
       output.write("<p/><p/><a href=/>"+cgi.escape("<<back ili 'curik' sto bi nas narod rek'o")+"</a>")
       output.write("<p/><p/>" + cgi.escape(AUTHOR + ", ver: " + VER))
 
-      output.write("<p/><p/>source code: <a href=https://github.com/hernad/FIT_UBP/blob/master/seminarski/py/pos_web_server.py>github repozitorij</a>")
+      output.write("<p/><p/>source code: <a href=https://github.com/hernad/FIT_UBP/blob/master/seminarski/py/pos_web_server.py>pos_web_server.py</a> i <a href=https://github.com/hernad/FIT_UBP/blob/master/seminarski/py/pos_db.py>pos_db.py</a>")
 
 
 

@@ -13,7 +13,7 @@ from wsgiref.simple_server import make_server
 from urllib import unquote_plus
 
 PORT=3000
-VER="0.5.0"
+VER="0.7.0"
 AUTHOR="hernad@bring.out.ba"
 
 class PosWeb:
@@ -59,7 +59,12 @@ class PosWeb:
 
    def html_footer(self, output):
       # http://wiki.python.org/moin/EscapingHtml
-      output.write("<p/></p>" + cgi.escape(AUTHOR + ", ver: " + VER))
+      output.write("<hr/>")
+      output.write("<p/><p/><a href=/>"+cgi.escape("<<back ili 'curik' sto bi nas narod rek'o")+"</a>")
+      output.write("<p/><p/>" + cgi.escape(AUTHOR + ", ver: " + VER))
+
+      output.write("<p/><p/>source code: <a href=https://github.com/hernad/FIT_UBP/blob/master/seminarski/py/pos_web_server.py>github repozitorij</a>")
+
 
 
    def html_rn_stavke(self, output):
@@ -89,7 +94,9 @@ class PosWeb:
              #odstampaj artikle
              output.write("Lista postojecih artikala:<p><p>")
              pos_print = pos_db.PosPrint(self.pos)
-             str_artikli = cgi.escape(pos_print.artikli(True))
+             #str_artikli = cgi.escape(pos_print.artikli(True))
+             str_artikli = pos_print.artikli(True)
+
              output.write("<pre>{0}</pre><p>".format(str_artikli) )
           self.err_msg = None
 
@@ -123,7 +130,7 @@ class PosWeb:
            Tip racuna:
             <INPUT TYPE=RADIO NAME="tip" VALUE="1" {0}>redovni
             <INPUT TYPE=RADIO NAME="tip" VALUE="2"  {1}>reklamirani
-           operater: <input type="text" name="operater" id="operater" value={2} />
+           ; Operater: <input type="text" name="operater" id="operater" value={2} />
            <input type="submit" value="Zakljuci racun" name="form_racun" /> 
            </form>""".format(s_0, s_1, s_op)
 
@@ -143,6 +150,13 @@ class PosWeb:
         rn = self.pos.find_racun_by_broj_datum(broj, date.today())
         str_racun = cgi.escape(pos_print.racun(rn['id']))
         output.write("<pre>{0}</pre><p>".format(str_racun) )
+
+   def html_report_kartica_prodaje(self, output, artikal_kod):
+        #odstampaj racun
+        print "report 2 / kartica prodaje:", artikal_kod
+        pos_print = pos_db.PosPrint(self.pos)
+        str_kartica = cgi.escape(pos_print.kartica_prodaje(artikal_kod))
+        output.write("<pre>{0}</pre><p>".format(str_kartica) )
 
 
    # javascript validation
@@ -223,6 +237,11 @@ class PosWeb:
          if path_vals[1] == "racun" and int(path_vals[2]) > 0:
             # stampa racuna na danasnji dan
             self.html_report_racun(output, int(path_vals[2]))
+         if path_vals[1] == "kartica_prodaje" and len(path_vals[2])>0:
+            self.html_report_kartica_prodaje(output, path_vals[2])
+
+
+
       else:
          process_rpt = False
                

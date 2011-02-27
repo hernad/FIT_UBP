@@ -223,7 +223,11 @@ class PosPrint:
         out = ""
         # izlistaj parametre 
         for row in result:
-           str = '{kod:<10} - {naziv:<40} ({jmj:<3}) : barkod: {barkod:<13}, cijena = {cijena:8.2f} '.format(kod=row[0], naziv=row[1], jmj=row[2], barkod=row[3], cijena=row[4])
+           if to_str:
+              str = '<a href=/report/kartica_prodaje/{kod}>{kod:<10}</a>'.format(kod=row[0])
+           else:
+              str = '{kod:<10}'.format(kod=row[0])
+           str += ' - {naziv:<40} ({jmj:<3}) : barkod: {barkod:<13}, cijena = {cijena:8.2f} '.format(naziv=row[1], jmj=row[2], barkod=row[3], cijena=row[4])
            if to_str:
               out += str + '\n'
            else:
@@ -231,6 +235,42 @@ class PosPrint:
 
         if to_str:
            return out
+
+    def kartica_prodaje(self, artikal_kod):
+        c_stavke = self.pos.cursor.execute("""SELECT racuni.datum, racuni.broj, artikli.kod, artikli.naziv, artikli.jmj, artikli.barkod, rn_stavke.cijena, case racuni.tip when 1 then kolicina else -kolicina end as kol
+FROM rn_stavke 
+LEFT OUTER JOIN artikli ON rn_stavke.artikal_id = artikli.id 
+LEFT OUTER JOIN racuni  ON rn_stavke.racun_id = racuni.id
+WHERE artikli.kod=:kod """, {'kod': artikal_kod})
+
+        s_out = "Izvjestaj: Kartica prodaje artikla\n\n"
+        ciza = "----- ---------- ---------- ------------ ---------- ---------- ----------"
+        hdr  = "  r.br   datum   racun broj        cijena     kolicina   stanje   ukupno\n"
+        s_out += "{ciza}\n".format(ciza=ciza)
+        ukupno_t = 0
+        kolicina_t = 0  
+        r_br = 0
+        for stavka in c_stavke:
+           datum, broj, kod, naziv, jmj, barkod, cijena, kolicina = stavka
+           if r_br == 0: 
+              s_out += "Artikal: {kod} {naziv}\n".format(kod=kod, naziv=naziv)
+              s_out +="{ciza}\n".format(ciza=ciza)
+              s_out +="{hdr}\n".format(hdr=hdr)
+              s_out +="{ciza}\n".format(ciza=ciza)
+           r_br += 1     
+           ukupno = kolicina*cijena
+           ukupno_t += ukupno
+           kolicina_t += kolicina
+           s_out += "{r_br:4}. {datum:10}   {broj:>8}   {cijena:10} {kolicina:10} {kolicina_t:10} {ukupno:10}\n".format(r_br=r_br, datum=datum, broj=broj, cijena=cijena, kolicina=kolicina, kolicina_t=kolicina_t, ukupno=ukupno_t)
+        
+        s_out +="{ciza}\n".format(ciza=ciza)
+        s_out +="{kolicina_t:62} {ukupno_t:10}\n".format(kolicina_t=kolicina_t, ukupno_t=ukupno_t)
+        s_out +="{ciza}\n".format(ciza=ciza)
+        
+        print s_out
+        return s_out   
+           
+
 
     def racun(self, id):
        rn = self.pos.find_racun_by_id(id)
@@ -323,12 +363,8 @@ if __name__ == '__main__':
     p.add_update_artikal ({ 'kod': "POS", 'barkod': None, 'naziv': "bring.out POS software", 'jmj': "kom", 'cijena': 440})
     p.add_update_artikal ({ 'kod': "SP9", 'barkod': None, 'naziv': "bring.out instalacija POS", 'jmj': "kom", 'cijena': 100})
     p.add_update_artikal ({ 'kod': "USB1", 'barkod': '387332930212', 'naziv': "USB flash 4GB", 'jmj': "kom", 'cijena': 15.44})
-
     p.add_update_artikal ({ 'kod': "USB2", 'barkod': '387332930225', 'naziv': "USB flash 8GB", 'jmj': "kom", 'cijena': 19.95})
-
     p.add_update_artikal ({ 'kod': "USB4", 'barkod': '387332930201', 'naziv': "USB flash 16GB", 'jmj': "kom", 'cijena': 35.33})
-
-
     p.add_update_artikal ({ 'kod': "USB5", 'barkod': '991332930201', 'naziv': "USB flash 32GB", 'jmj': "kom", 'cijena': 49.25})
     # promjena cijene i barkoda
     p.add_update_artikal ({ 'kod': "USB5", 'barkod': '991330030299', 'naziv': "USB flash 32GB", 'jmj': "kom", 'cijena': 44.55})
@@ -369,6 +405,7 @@ if __name__ == '__main__':
     #print p2.cursor
 
     print_pos.racun(5)
+    print_pos.kartica_prodaje("POS")
 
 
 

@@ -15,6 +15,7 @@ from urllib import unquote_plus
 PORT=3000
 VER="0.7.1"
 AUTHOR="hernad@bring.out.ba"
+URL_PREFIX="/ubp"
 
 class PosWeb:
 
@@ -60,7 +61,7 @@ class PosWeb:
    def html_footer(self, output):
       # http://wiki.python.org/moin/EscapingHtml
       output.write("<hr/>")
-      output.write("<p/><p/><a href=/>"+cgi.escape("<<back ili 'curik' sto bi nas narod rek'o")+"</a>")
+      output.write("<p/><p/><a href="+URL_PREFIX+"/>"+cgi.escape("<<back ili 'curik' sto bi nas narod rek'o")+"</a>")
       output.write("<p/><p/>" + cgi.escape(AUTHOR + ", ver: " + VER))
 
       output.write("<p/><p/>source code: <a href=https://github.com/hernad/FIT_UBP/blob/master/seminarski/py/pos_web_server.py>pos_web_server.py</a> i <a href=https://github.com/hernad/FIT_UBP/blob/master/seminarski/py/pos_db.py>pos_db.py</a>")
@@ -229,16 +230,16 @@ class PosWeb:
       path_vals = environ['PATH_INFO'][1:].split("/")
       print path_vals
 
-      
-      if path_vals[0] == 'report' and path_vals[1] and path_vals[2]:
+      i = 1
+      if path_vals[i] == 'report' and path_vals[i+1] and path_vals[i+2]:
          print "procesiram report ..."
          process_rpt = True
          # report/1/broj_danasnjeg_racuna
-         if path_vals[1] == "racun" and int(path_vals[2]) > 0:
+         if path_vals[i+1] == "racun" and int(path_vals[i+2]) > 0:
             # stampa racuna na danasnji dan
-            self.html_report_racun(output, int(path_vals[2]))
-         if path_vals[1] == "kartica_prodaje" and len(path_vals[2])>0:
-            self.html_report_kartica_prodaje(output, path_vals[2])
+            self.html_report_racun(output, int(path_vals[i+2]))
+         if path_vals[i+1] == "kartica_prodaje" and len(path_vals[i+2])>0:
+            self.html_report_kartica_prodaje(output, path_vals[i+2])
 
 
 

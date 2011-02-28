@@ -13,6 +13,7 @@ DATE="26.02.2011"
 APP="UBP POS app"
 AUTHOR="hernad@bring.out.ba"
 
+URL_PREFIX="/ubp"
 
 PDV_STOPA=17
  
@@ -224,7 +225,7 @@ class PosPrint:
         # izlistaj parametre 
         for row in result:
            if to_str:
-              str = '<a href=/report/kartica_prodaje/{kod}>{kod:<10}</a>'.format(kod=row[0])
+              str = '<a href='+URL_PREFIX+'/report/kartica_prodaje/{kod}>{kod:<10}</a>'.format(kod=row[0])
            else:
               str = '{kod:<10}'.format(kod=row[0])
            str += ' - {naziv:<40} ({jmj:<3}) : barkod: {barkod:<13}, cijena = {cijena:8.2f} '.format(naziv=row[1], jmj=row[2], barkod=row[3], cijena=row[4])

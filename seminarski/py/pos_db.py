@@ -8,8 +8,8 @@ import os.path
 from datetime import date
 
 
-VER="0.9.1"
-DATE="26.02.2011"
+VER="0.9.2"
+DATE="28.02.2011"
 APP="UBP POS app"
 AUTHOR="hernad@bring.out.ba"
 

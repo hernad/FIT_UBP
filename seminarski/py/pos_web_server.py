@@ -13,7 +13,7 @@ from wsgiref.simple_server import make_server
 from urllib import unquote_plus
 
 PORT=3000
-VER="0.7.1"
+VER="0.7.2-28.02.2010"
 AUTHOR="hernad@bring.out.ba"
 URL_PREFIX="/ubp"
 

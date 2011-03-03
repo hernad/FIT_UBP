@@ -2,10 +2,10 @@
 # erwiz/work/scripts/dot2pdf.sh pos_ubp.dot
 
 
-{title: "UBP seminarski, POS E-R model, IE notacija (Look Across/Look Across), v 0.6.5"; title-size: 20}
+{title: "UBP seminarski, POS E-R model, IE notacija (Look Across/Look Across), v 0.7.0"; title-size: 20}
 
 [racuni] {color: blue}
-*id
+*racun_id
 tip
 broj {mark: "(1); (1,2)=[UNIQUE]"}
 datum {mark: "(2)"}
@@ -14,7 +14,7 @@ ukupno_s_pdv
 operater_id* {mark: "<operateri>"}
 
 [rn_stavke] {color: blue}
-*id 
+*rn_stavke_id 
 racun_id* {mark: "<racuni>"}
 artikal_id* {mark: "<artikli>"}
 kolicina
@@ -22,7 +22,7 @@ cijena
 
 
 [artikli] {color: red}
-*id
+*artikal_id
 kod {mark: "[UNIQUE]"}
 barkod {mark: "[UNIQUE]"}
 jmj 
@@ -30,12 +30,12 @@ cijena {mark: "[1]; (1,2)=[UNIQUE]"}
 naziv {mark: "[2]"}
 
 [parametri] {color: green}
-*id
+*parametar_id
 svrha {mark: "[UNIQUE]"}
 opis
 
 [operateri] {color: red}
-*id
+*operater_id
 naziv
 
 (rn_fiskalni) {color: orange}
